@@ -2,7 +2,7 @@ let snowInterval = setInterval(function(){
     if($(".c126__total1--v1.header_weather__snowfall_measurement").length){
         toggleWeatherWidget();
         clearInterval(snowInterval);
-;    }
+    }
 }, 500)
 
 // Function to be called when we're ready to show/hide the weather widget
@@ -10,10 +10,6 @@ function toggleWeatherWidget(){
     //Parse the widget HTML to find the current inch count of snow, parsing it to an integer
     let snowMeasurement = parseInt($(".c126__label1--v1:contains('24 HourSnowfall'):first").parent().children().first().text().replace("in", ""));
 
-    // Ensuring that our variable is a valid number that that it is greater than two inches
-    //
-    // TO-DO: Add in a condition that the value of snowMeasurement must be greater than two inches to show the widget. The current condition is for development purposes (we can't control the weather)
-    //
     if(typeof(snowMeasurement) === 'number'){
 
         // Hide the 'Todays Forecast' part of the widget
@@ -24,7 +20,7 @@ function toggleWeatherWidget(){
             $("#webcam_full_width_2").hide();
             $("#webcam_full_width_1").show();
             $(".weather_detail").show();
-            
+
             // Begin keeping track of the time that the page has effectively loaded.
             var start = Date.now();
             
@@ -65,7 +61,8 @@ function trackAnalytics(pev2){
 }
 
 // Function to change snow displayed in widget  -- for testing purposes only
-function changeSnowAmount(num){
+// TO-DO: Remove when deployed to production.
+function makeItSnow(num){
     $(".c126__label1--v1:contains('24 HourSnowfall'):first").parent().children().first().text(`${num}in`)
     toggleWeatherWidget();
 }
