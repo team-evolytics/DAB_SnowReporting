@@ -1,3 +1,55 @@
 .header_weather__snow{
     border-left: none;
 }
+
+
+@media screen and (max-width: 1024px) {
+    #mainNavInner .nav_weather_search .main_nav__utility_item__wx--desktop{
+        visibility: visible;
+        opacity: 1;
+        display: inline!important;
+        padding-right:10px;
+
+    }
+
+    #mainNavInner .nav_weather_search .main_nav__utility_item__wx--mobile{
+        visibility: hidden;
+        opacity: 0;
+        display: none;
+    }
+
+    #c126_WeatherHeader_1{
+        right:6%;
+        top: 70px;
+        visibility: visible;
+        display: block!important;
+        opacity: 0;
+        width:300px;
+    }
+
+    #c126_WeatherHeader_1 .c126__total1--v1, #c126_WeatherHeader_1 .header_weather__snowfall_measurement, #c126_WeatherHeader_1 .header_weather__title{
+        color: inherit;
+    }
+
+    #c126_WeatherHeader_1 .header_weather__title{
+        margin-bottom: 20px;
+    }
+
+    #c126_WeatherHeader_1 .main_nav__dropdown__arrow{
+        opacity: 1;
+        visibility: visible;
+        left:42px;
+        top:-19px;
+    }
+
+    #c126_WeatherHeader_1{
+        max-height:400px;
+        top:63px;
+        height: 305%;
+    }
+
+    #c126_WeatherHeader_1 .header_weather__desktop_section{
+        padding-left: 0px;
+        width: 100%;
+    }
+}

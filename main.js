@@ -1,6 +1,9 @@
+var desktop = window.innerWidth > 1199 ? true : false;
+
 let snowInterval = setInterval(function(){
     if($(".c126__total1--v1.header_weather__snowfall_measurement").length){
         toggleWeatherWidget();
+        !desktop && addMobileClick();
         clearInterval(snowInterval);
     }
 }, 500)
@@ -26,7 +29,7 @@ function toggleWeatherWidget(){
             
             // Wait half a second to show the widget by triggering a mouseover event. Send analytics tracking call as well.
             setTimeout(function(){
-                $("#c126_WeatherHeader_1").trigger("mouseover");
+                desktop ? $("#c126_WeatherHeader_1").trigger("mouseover") : $("#c126_WeatherHeader_1").css("opacity", "1");
                 trackAnalytics("Snow Reporting | Snow Shown | "+snowMeasurement+" inches");
 
                 // We need to add an event to the document to listen for scrolling, since it is one of our two  conditions for hiding the widget.
@@ -45,7 +48,7 @@ function toggleWeatherWidget(){
         let delta = Math.floor((Date.now() - start)/1000); 
         if(delta >= 3){
             // Trigger mouseout event to hide the widget, and then remove the event listener since it is no longer needed
-            $("#c126_WeatherHeader_1").trigger("mouseout");
+            desktop ? $("#c126_WeatherHeader_1").trigger("mouseout") : $("#c126_WeatherHeader_1").css("opacity", "0");
             document.removeEventListener("scroll", hideWeatherWidget);
         }
     }
@@ -58,6 +61,12 @@ function trackAnalytics(pev2){
         window.s.pev2 = pev2;
         window.s.tl();
     }
+}
+
+function addMobileClick(){
+    $("#mainNavInner > div.main_nav__utility > ul > li.main_nav__utility_item.nav_weather_search.nav_weather_search--wx.no-border > a.main_nav__utility_item__wx.main_nav__utility_item__wx--desktop.header_weather__icon_container.hidden-xs.hidden-sm.hidden-md.c78__tempheader--v1").click(function(){
+        $("#header_weather__mobile").trigger("click");
+    });
 }
 
 // Function to change snow displayed in widget  -- for testing purposes only
